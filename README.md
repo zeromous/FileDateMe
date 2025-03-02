@@ -18,7 +18,7 @@ Script will *only* match/change JPEG, JPG or PNG files in a directory.
 Files that do not have a "Date Taken" metadata will be skipped and can use `[-nometa-use-mdate]` to use the modified date.  
 
 `>>> WARNING <<<<`
-> `-yes` will automatically rename the files without asking for confirmation
+> `-yes` will automatically rename the files without asking for confirmation  
 > This script will also remove any spaces, double underscores/hyphens and further instances of the calculated 
 > datestamp found in the original filename.
  
