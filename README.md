@@ -19,7 +19,7 @@ Files that do not have a "Date Taken" metadata will be skipped and can use `[-no
 > datestamp found in the original filename.
  
 ## Default Usage:
-- Preview Mode is Default but will ask if you wish to proceed
+- Preview Mode is Default but will ask if you wish to proceed with changes
 - This script will rename the files in the specified directory based on the "Date Taken" metadata of the image files.  This is useful when moving older photos without a date prefix on the filename, and where cdate and mdate are not reliable.
 - Files without Data Taken metadata will be skipped and need to be manually renamed.
 
