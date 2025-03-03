@@ -1,5 +1,5 @@
 ## FileDateMe2.ps1 - Rename photo image files based on the "Date Taken" image metadata if available
-#  v2.1 2025-03-01   
+#  v2.2 2025-mm-dd [dev]  See https://github.com/zeromous/FileDateMe/issues
 #  by: Zeromous
 #
 #  Supported: Windows 10, Windows 11
@@ -56,6 +56,9 @@ if (-not (Test-Path -Path $directoryPath)) {
     exit
 }
 
+# Convert relative path to absolute path
+$directoryPath = Resolve-Path -Path $directoryPath
+
 # Create a Shell.Application COM object
 $shell = New-Object -ComObject Shell.Application
 
@@ -63,7 +66,7 @@ $shell = New-Object -ComObject Shell.Application
 $files = Get-ChildItem -Path $directoryPath -File | Where-Object { $_.Extension -match "jpg|jpeg|png" }
 
 # Create a log file
-$logFile = Join-Path -Path $directoryPath -ChildPath "FileDateMe2.log"
+$logFile = Join-Path -Path $directoryPath -ChildPath "FileDateMe2$(Get-Date -Format "yyyyMMddHHmmss").log"
 "Script started at $(Get-Date)" | Out-File -FilePath $logFile -Append
 
 function Log {
@@ -178,13 +181,21 @@ function ProcessFile {
     # Remove any instances of the formatted date in the original filename
     $originalFileName = $originalFileName -replace $formattedDate, ""
 
+
     # Remove any double underscores in the original filename
-    $originalFileName = $originalFileName -replace "__", "_"
+    $originalFileName = $originalFileName -replace "__", "_" #This reclic may be redundant, and better to clean up files after newFilename is calculated.
 
     # Create the new file name by prepending the formatted date
+    $newFileName = $newFileName -replace "_--_$", ""
+    $newFileName = $newFileName -replace "_-_$", ""
     $newFileName = "$formattedDate"+"_"+"$originalFileName"
     $newFileName = $newFileName -replace "__", "_"
     $newFileName = $newFileName -replace "--", "-"
+    #redundant on purpose maybe replace with a loop?
+    $newFileName = $newFileName -replace "-\.", "." 
+    $newFileName = $newFileName -replace "_\.", "." 
+    $newFileName = $newFileName -replace "-\.", "." 
+    $newFileName = $newFileName -replace "_\.", "." 
 
     # Get the full path of the new file name
     $newFilePath = Join-Path -Path $directoryPath -ChildPath $newFileName
