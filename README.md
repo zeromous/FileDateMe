@@ -1,7 +1,8 @@
 # FileDateMe2.ps1 
 
 ## Purpose
-Windows Powershell Script to rename photo image files based on the "Date Taken" image metadata (if available)
+Windows Powershell Script to rename photo image files based on the "Date Taken" image metadata (if available).
+Useful to photograpers and point-and-shoot camera users who may have multiple unique non-compliant filenamed images (i.e. IMG_00000.jpg) from multiple devices, in archive that are difficult to sort.
 
 ### v2.1 2025-03-01   
 by: Zeromous
