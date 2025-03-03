@@ -1,3 +1,14 @@
+# fdm_generate_testdata_exif.ps1
+# Requires EXIFTOOL installed on PATH https://exiftool.org/install.html#Windows to generate test EXIF data
+# 
+# Randomly creates and mangles filenames of a similar name with different dates.
+# Exclusively for creating testdata for FileDateMe2.ps1
+#
+# v 1.0 2025-03-01  
+# by: Zeromous
+#
+#--------------------------------------------------------------
+
 param (
     [int]$number = 20,
     [string]$directoryPath = "testdata"
@@ -74,11 +85,6 @@ function Generate-RandomImage {
         }
     }
 
-    # Save the bitmap to a file
-    #$bitmap.Save($filePath)
-    #>$bitmap.Dispose()
-
-    #
     # Save the bitmap to a file in the specified format
     if ($format -eq "jpg") {
         $bitmap.Save($filePath, [System.Drawing.Imaging.ImageFormat]::Jpeg)
